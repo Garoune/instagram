@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_instagram/screens/switch_account_screen.dart';
 
 void main() {
   runApp(const Application());
@@ -10,8 +11,24 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        textTheme: TextTheme(
+          headlineMedium: TextStyle(
+            fontFamily: 'GB',fontSize: 18,color: Colors.white
+          )
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color(0xffF35383),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            textStyle: TextStyle(fontFamily: 'GB',fontSize: 16),
+          ),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: SwitchAccountScreen(),
     );
   }
 }
@@ -30,9 +47,33 @@ class SplashScreen extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Center(
-          child: Text('garouneh',
-          style: TextStyle(color: Colors.white),),
+        body: Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 80),
+              child: Center(
+                child: Image(
+                  image: AssetImage('images/logo_splash.png'),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 32,
+              child: Column(
+                children: [
+                  Text(
+                    'from',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  Text(
+                    'ExpertFlutter',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
