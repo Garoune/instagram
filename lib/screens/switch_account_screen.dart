@@ -102,7 +102,7 @@ class SwitchAccountScreen extends StatelessWidget {
                   ),
                   Text(
                     'Sign up',
-                    style: TextStyle(fontFamily:'GB',color: Colors.white, fontSize: 20),
+                    style: TextStyle(fontFamily:'GB',color: Colors.white, fontSize: 16),
                   ),
                 ],
               )),
