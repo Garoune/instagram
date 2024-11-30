@@ -17,7 +17,7 @@ class Application extends StatelessWidget {
           fontFamily: 'GB',
           fontSize: 18,
           color: Colors.white,
-        )),
+        ),),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xffF35383),

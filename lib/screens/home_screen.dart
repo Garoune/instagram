@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter_instagram/screens/share_bottomsheet.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,7 +16,7 @@ class HomeScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: false,
         title: Container(
-          width: 128,
+          width: 150,
           height: 24,
           child: Image.asset('images/moodinger_logo.png'),
         ),
@@ -29,104 +30,171 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: Center(
-          child: Container(
-            height: 450,
-            width: 394,
-            child: Stack(
-              alignment: AlignmentDirectional.bottomCenter,
-              children: [
-                Positioned(
-                  top: 0,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                        'images/post_cover.png'), // Added .png extension
-                  ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                    barrierColor: Colors.transparent,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return ShareBottomSheet();
+                    },
+                  );
+                },
+                child: Text(
+                  'open bottemsheet',
+                  style: TextStyle(color: Colors.white),
                 ),
-                Positioned(
-                  top: 15,
-                  right: 15,
-                  child: Image.asset('images/icon_video.png'),
-                ),
-                Positioned(
-                  bottom: 15,
-                  child: ClipRRect(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
-                      child: Container(
-                        width: 340,
-                        height: 46,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              Color.fromRGBO(255, 255, 255, 0.5),
-                              Color.fromRGBO(255, 255, 255, 0.2),
-                            ],
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(width: 15),
-                            Row(
-                              children: [
-                                Image.asset('images/icon_hart.png'),
-                                SizedBox(width: 6),
-                                Text(
-                                  '2.5 k',
-                                  style: TextStyle(
-                                    fontFamily: 'GB',
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(width: 40),
-                            Row(
-                              children: [
-                                Image.asset('images/icon_comments.png'),
-                                SizedBox(width: 6),
-                                Text(
-                                  '1.5 k',
-                                  style: TextStyle(
-                                    fontFamily: 'GB',
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(width: 40),
-                            Flexible(
-                              flex: 1,
-                              child: Image.asset(
-                                  'images/icon_share_bottomsheet.png'), // Use Flexible to adjust layout
-                            ),
-                            SizedBox(width: 40),
-                            Flexible(
-                              flex: 1,
-                              child: Image.asset(
-                                  'images/icon_save.png'), // Use Flexible to adjust layout
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 120,
+                child: _getSotryList(),
+              ),
+              _getPostList()
+            ],
           ),
         ),
       ),
     );
   }
 
-  Padding _getHeaderPost() {
+  Widget _getSotryList() {
+    return Container(
+      height: 120,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return index == 0 ? _getAddSotryBox() : _getStoryListBox();
+          }),
+    );
+  }
+
+  Widget _getPostList() {
+    return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: 9,
+      itemBuilder: (context, index) {
+        return Column(
+          children: [
+            SizedBox(
+              height: 34,
+            ),
+            _getHeaderPost(),
+            SizedBox(
+              height: 24,
+            ),
+            _getPostContent(),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _getPostContent() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 12),
+      height: 440,
+      width: 394,
+      child: Stack(
+        alignment: AlignmentDirectional.bottomCenter,
+        children: [
+          Positioned(
+            top: 0,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child:
+                  Container(
+                    height: 350,
+                    width: 350,
+                    child: Image.asset('images/post_cover.png'),
+                  ) // Added .png extension
+            ),
+          ),
+          Positioned(
+            top: 15,
+            right: 15,
+            child: Image.asset('images/icon_video.png'),
+          ),
+          Positioned(
+            bottom: 15,
+            child: ClipRRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
+                child: Container(
+                  width: 340,
+                  height: 46,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Color.fromRGBO(255, 255, 255, 0.5),
+                        Color.fromRGBO(255, 255, 255, 0.2),
+                      ],
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(width: 15),
+                      Row(
+                        children: [
+                          Image.asset('images/icon_hart.png'),
+                          SizedBox(width: 6),
+                          Text(
+                            '2.5 k',
+                            style: TextStyle(
+                              fontFamily: 'GB',
+                              fontSize: 14,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 40),
+                      Row(
+                        children: [
+                          Image.asset('images/icon_comments.png'),
+                          SizedBox(width: 6),
+                          Text(
+                            '1.5 k',
+                            style: TextStyle(
+                              fontFamily: 'GB',
+                              fontSize: 14,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 40),
+                      Flexible(
+                        flex: 1,
+                        child: Image.asset(
+                            'images/icon_share_bottomsheet.png'), // Use Flexible to adjust layout
+                      ),
+                      SizedBox(width: 40),
+                      Flexible(
+                        flex: 1,
+                        child: Image.asset(
+                            'images/icon_save.png'), // Use Flexible to adjust layout
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _getHeaderPost() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18),
       child: Row(
@@ -139,7 +207,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Amirahmad',
+                  'Garouneh',
                   style: TextStyle(
                       fontFamily: 'GB', color: Colors.white, fontSize: 12),
                 ),
@@ -183,25 +251,76 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _getAddStoryBox() {
+  Widget _getStoryListBox() {
     return Container(
-      width: 64,
-      height: 64,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(17),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(2.0),
-        child: Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(
-            color: Color(0xff1C1F2E),
-            borderRadius: BorderRadius.circular(15),
+      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+      child: Column(
+        children: [
+          DottedBorder(
+            borderType: BorderType.RRect,
+            radius: Radius.circular(17),
+            padding: EdgeInsets.all(4),
+            color: Color(0xffF35383),
+            dashPattern: [40, 10],
+            strokeWidth: 2,
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              child: Padding(
+                padding: const EdgeInsets.all(
+                    2.0), // Padding to create the inside border effect
+                child: Container(
+                  height: 52,
+                  width: 52,
+                  child: Image.asset('images/profile.png'),
+                ),
+              ),
+            ),
           ),
-          child: Image.asset('images/icon_plus.png'),
-        ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            'data',
+            style: TextStyle(color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _getAddSotryBox() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+      child: Column(
+        children: [
+          Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(17),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(2),
+              child: Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Color(0xff1C1F2E),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Image.asset('images/icon_plus.png'),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 12,
+          ),
+          Text(
+            'your story',
+            style: TextStyle(color: Colors.white),
+          )
+        ],
       ),
     );
   }
