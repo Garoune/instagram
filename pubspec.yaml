@@ -89,6 +89,8 @@ flutter:
   - images/item7.png
   - images/item8.png
   - images/item9.png
+  - images/icon_arrow_down.png
+  - images/icon_arrow_right_box.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
