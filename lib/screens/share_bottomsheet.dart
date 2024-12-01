@@ -1,10 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class ShareBottomSheet extends StatelessWidget {
   const ShareBottomSheet({this.controller, Key? key}) : super(key: key);
   final ScrollController? controller;
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -67,9 +67,7 @@ class ShareBottomSheet extends StatelessWidget {
                       child: Row(
                         children: [
                           Image.asset('images/icon_search.png'),
-                          SizedBox(
-                            width: 8,
-                          ),
+                          SizedBox(width: 8),
                           Expanded(
                               child: TextField(
                             decoration: InputDecoration(
@@ -82,9 +80,7 @@ class ShareBottomSheet extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 32,
-                  ),
+                  SizedBox(height: 32),
                 ],
               ),
             ),
@@ -129,11 +125,9 @@ class ShareBottomSheet extends StatelessWidget {
             child: Image.asset('images/profile.png'),
           ),
         ),
-        SizedBox(
-          height: 10,
-        ),
+        SizedBox(height: 10),
         Text(
-          'AmirahmadAdibi',
+          'Garouneh',
           textAlign: TextAlign.center,
           style: TextStyle(fontFamily: 'GB', fontSize: 12, color: Colors.white),
         )

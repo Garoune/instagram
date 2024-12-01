@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_instagram/screens/home_screen.dart';
+import 'package:flutter_instagram/screens/search_screen.dart';
 
 void main() {
   runApp(const Application());
@@ -29,7 +29,7 @@ class Application extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home:HomeScreen(),
+      home:SearchScreen(),
     );
   }
 }

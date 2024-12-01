@@ -30,17 +30,31 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ElevatedButton(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: ElevatedButton(
                 onPressed: () {
                   showModalBottomSheet(
                     barrierColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
                     context: context,
+                    isScrollControlled: true,
                     builder: (BuildContext context) {
-                      return ShareBottomSheet();
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom,
+                        ),
+                        child: DraggableScrollableSheet(
+                          initialChildSize: 0.5,
+                          minChildSize: 0.2,
+                          maxChildSize: 0.7,
+                          builder: (BuildContext context,
+                              ScrollController controller) {
+                            return ShareBottomSheet(controller: controller);
+                          },
+                        ),
+                      );
                     },
                   );
                 },
@@ -49,13 +63,30 @@ class HomeScreen extends StatelessWidget {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              SizedBox(
-                height: 120,
-                child: _getSotryList(),
+            ),
+            SliverToBoxAdapter(
+              child: _getSotryList(),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 34,
+                      ),
+                      _getHeaderPost(),
+                      SizedBox(
+                        height: 24,
+                      ),
+                      _getPostContent()
+                    ],
+                  );
+                },
+                childCount: 4,
               ),
-              _getPostList()
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -106,14 +137,13 @@ class HomeScreen extends StatelessWidget {
           Positioned(
             top: 0,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child:
-                  Container(
-                    height: 350,
-                    width: 350,
-                    child: Image.asset('images/post_cover.png'),
-                  ) // Added .png extension
-            ),
+                borderRadius: BorderRadius.circular(15),
+                child: Container(
+                  height: 350,
+                  width: 350,
+                  child: Image.asset('images/post_cover.png'),
+                ) // Added .png extension
+                ),
           ),
           Positioned(
             top: 15,
@@ -234,7 +264,7 @@ class HomeScreen extends StatelessWidget {
       radius: Radius.circular(17),
       padding: EdgeInsets.all(4),
       color: Color(0xffF35383),
-      dashPattern: [40, 10],
+      dashPattern: [30, 10],
       strokeWidth: 2,
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(15)),
