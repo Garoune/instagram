@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_instagram/screens/activityy_screen.dart';
-import 'package:flutter_instagram/screens/add_content_screen.dart';
+import 'package:flutter_instagram/screens/main_screen.dart';
 
 void main() {
   runApp(const Application());
@@ -30,7 +29,7 @@ class Application extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home:ActivityyScreen(),
+      home:MainScreen(),
     );
   }
 }

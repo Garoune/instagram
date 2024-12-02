@@ -91,6 +91,18 @@ flutter:
   - images/item9.png
   - images/icon_arrow_down.png
   - images/icon_arrow_right_box.png
+  - images/icon_profile_edit.png
+  - images/icon_tab_bookmark.png
+  - images/icon_tab_posts.png
+  - images/icon_search_navigation.png
+  - images/icon_search_navigation_active.png
+  - images/icon_active_home.png
+  - images/icon_add_navigation.png
+  - images/icon_activity_navigation_active.png
+  - images/icon_add_navigation_active.png
+  - images/icon_home.png
+ 
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
