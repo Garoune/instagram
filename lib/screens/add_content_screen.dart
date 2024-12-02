@@ -121,34 +121,31 @@ class AddContentScreen extends StatelessWidget {
   Widget _getHeaderSection() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 27, horizontal: 18),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 32),
-        child: Row(
-          children: [
-            Text(
-              'Post',
-              style: TextStyle(
-                  color: Colors.white, fontFamily: 'GB', fontSize: 24),
+      child: Row(
+        children: [
+          Text(
+            'Post',
+            style: TextStyle(
+                color: Colors.white, fontFamily: 'GB', fontSize: 24),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Image.asset('images/icon_arrow_down.png'),
+          Spacer(),
+          Text(
+            'Next',
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'GB',
+              fontSize: 16,
             ),
-            SizedBox(
-              width: 10,
-            ),
-            Image.asset('images/icon_arrow_down.png'),
-            Spacer(),
-            Text(
-              'Next',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'GB',
-                fontSize: 16,
-              ),
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            Image.asset('images/icon_arrow_right_box.png')
-          ],
-        ),
+          ),
+          SizedBox(
+            width: 5,
+          ),
+          Image.asset('images/icon_arrow_right_box.png')
+        ],
       ),
     );
   }

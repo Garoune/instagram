@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_instagram/screens/activityy_screen.dart';
 import 'package:flutter_instagram/screens/add_content_screen.dart';
 
 void main() {
@@ -25,11 +26,11 @@ class Application extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               textStyle: TextStyle(
-                  fontFamily: 'GB', fontSize: 16, fontWeight: FontWeight.w700)),
+                  fontFamily: 'GB', fontSize: 16),),
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home:AddContentScreen(),
+      home:ActivityyScreen(),
     );
   }
 }
